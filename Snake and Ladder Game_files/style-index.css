@@ -1,0 +1,272 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+
+}
+:root{
+    --bg-color: red;
+}
+
+body{
+    width:100vw;
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: grey;
+    /* margin: auto; */
+}
+
+.main-section{
+    width:100vw;
+    height:100vh;
+    background: grey;
+    
+    
+}
+
+.img-section{
+    margin:2rem 0 0 2rem;
+   width:40rem;
+}
+.img-section  img{
+    width:100%;
+}
+
+/* main number section styling */
+
+.main-number-section{
+    margin:2rem 0 0 2rem;
+    width:40rem;
+    height:40rem;
+    /* background-color: rgb(75, 75, 75); */
+    background: transparent;
+    position: absolute;
+    top:0;
+
+    display: grid;
+    /* grid shorthand property */
+    grid-template: repeat(10, 64px) / repeat(10, 64px);
+
+    /* display: flex;
+    flex-direction: row; */
+    /* display: none; */
+    
+}
+
+:where(.cell-one,.cell-two,
+.cell-three,.cell-four,.cell-five,
+.cell-six,.cell-seven,.cell-eight,
+.cell-nine,.cell-ten){
+    padding:0;
+    margin:0;
+    /* border:1px solid white; */
+    width:2rem;
+    height:2rem;
+    background: rgb(125, 72, 72);
+}
+
+.number{
+    width:4rem;
+    height:4rem;
+    border:1px solid white;
+}
+.row-one,.row-two,.row-three,
+.row-four,.row-five,.row-six,
+.row-seven,.row-eight,.row-nine,
+.row-ten{
+    display: flex;
+    
+}
+
+.ten-block,.nineth-block,
+.eighth-block,.seventh-block,
+.sixth-block,.fifth-block,
+.fourth-block,.third-block,
+.second-block,.first-block{
+    color:white;
+    
+}
+
+.active-1{
+    background: url("./images/chess-piece.png") center/contain;
+    background-color: gray;
+    
+}
+
+.active-2{
+    background: url("./images/pawn.png") center/contain;
+    background-color: transparent;
+}
+
+
+.side-section{
+    position: absolute;
+    left:50%;
+    top:3%;
+    /* background: #000; */
+    border:1px solid pink;
+    width:40rem;
+    height:40rem;
+    /* display: none; */
+}
+
+.dice{
+     display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    text-transform: uppercase;
+}
+
+.side-section .dice h2{
+    width:100%;
+    height:7rem;
+    background: #000;
+    position: relative;
+    color:white;
+    padding:2rem;
+    border-bottom: 2px solid white;
+}
+
+.side-section .dice h2 span{
+    background: rgb(101, 206, 108);
+    width:3rem;
+    height:3rem;
+    display: inline-block;
+    position: absolute;
+    top:25%;
+    text-align: center;
+    margin-left:1rem;
+    border-radius: 50%;
+   
+    
+}
+#dice-result{
+    
+    padding-top:0.3rem;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#move-coin{
+    width:3rem;
+    height:3rem;
+    background: white;
+    border-radius: 50%;
+}
+
+.button-section {
+    width:100%;
+    height:30%;
+    padding:1rem;
+    font-weight: 500;
+    background-color: lightgreen;
+    color:black;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    
+}
+
+.button-section button{
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    background-color: steelblue;
+    color:white;
+  
+}
+.btn-1:hover{
+    background-color: rgb(0, 128, 51);
+    color:white;
+}
+.btn-2:hover{
+    background-color: rgb(200, 130, 238);
+    color: rgb(255, 255, 255);
+}
+.dice-button{
+    vertical-align: middle;
+    width:10rem;
+    height:5rem;
+    padding:1rem;
+    background-color: lightgrey;
+    color:indigo;
+    font-weight: 500;
+    border-radius:6px;
+    font-size:1.2rem;
+}
+
+.game-result{
+    width:100%;
+    height:20%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+#show-winning{
+    font-weight: 300;
+    font-size: 1rem;
+}
+#display-result{
+    vertical-align: middle;
+}
+
+#game-condition{
+    background: #000;
+    width:100%;
+    height:12vh;
+    display: none;
+    position: relative;
+}
+#game-over{
+   position: absolute;
+   left:50%;
+   top: 50%;
+   transform: translate(-50%,-50%);
+    text-align: center;
+    color:red;
+    width:30%;
+    font-weight: 800;
+    height:5vh;
+    background: white;
+    border-radius:8px;
+    text-transform: uppercase;
+    padding-top:0.7rem;
+    display: none;
+       
+}
+#playerTurn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    width:100%;
+    height:12vh;
+    /* display: none; */
+    position: relative; 
+    color:white;  
+}
+
+.turn{
+    width:30%;
+    height:40%;
+    background: white;
+    color:black;
+    font-weight: 300;
+    text-align: center;
+    border-radius: 6px;
+}
+#turn{
+    padding: 0 1rem;
+    font-weight:800;
+}
+
+

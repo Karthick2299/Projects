@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://127.0.0.1:5500/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake and Ladder Game</title>
+    <link rel="stylesheet" href="./Snake and Ladder Game_files/style-index.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./Snake and Ladder Game_files/css2" rel="stylesheet">
+
+<script src="./Snake and Ladder Game_files/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+ 
+
+</head>
+<body>
+    
+
+    <div class="main-section">
+
+        <div class="img-section">
+            <img src="./Snake and Ladder Game_files/game-image.png" alt="Snake and Ladder Game">
+        </div>
+
+
+        <div class="main-number-section">
+
+            <div class="row-ten">
+                <div id="100" class="ten-block number tenth-end number-Hundread">100</div>
+                <div id="99" class="ten-block number number-last-nine">99</div>
+                <div id="98" class="ten-block number number-last-eight">98</div>
+                <div id="97" class="ten-block number number-last-seven">97</div>
+                <div id="96" class="ten-block number number-last-six">96</div>
+                <div id="95" class="ten-block number number-last-five">95</div>
+                <div id="94" class="ten-block number number-last-four">94</div>
+                <div id="93" class="ten-block number number-last-three">93</div>
+                <div id="92" class="ten-block number number-last-two">92</div>
+                <div id="91" class="ten-block number number-last-one">91</div>
+            </div>
+
+            <div class="row-nine">
+                <div id="81" class="nineth-block number number-ninety-one">81</div>
+                <div id="82" class="nineth-block number number-ninety-two">82</div>
+                <div id="83" class="nineth-block number number-ninety-three">83</div>
+                <div id="84" class="nineth-block number number-ninety-four">84</div>
+                <div id="85" class="nineth-block number number-ninety-five">85</div>
+                <div id="86" class="nineth-block number number-ninety-six">86</div>
+                <div id="87" class="nineth-block number number-ninety-seven">87</div>
+                <div id="88" class="nineth-block number number-ninety-eight">88</div>
+                <div id="89" class="nineth-block number number-ninety-nine">89</div>
+                <div id="90" class="nineth-block number nineth-end number-ninety">90</div>
+            </div>
+
+            <div class="row-eight">
+                <div id="80" class="eighth-block number eighth-end number-eighty">80</div>
+                <div id="79" class="eighth-block number number-eighty-nine">79</div>
+                <div id="78" class="eighth-block number number-eighty-eight">78</div>
+                <div id="77" class="eighth-block number number-eighty-seven">77</div>
+                <div id="76" class="eighth-block number number-eighty-six">76</div>
+                <div id="75" class="eighth-block number number-eighty-five">75</div>
+                <div id="74" class="eighth-block number number-eighty-four">74</div>
+                <div id="73" class="eighth-block number number-eighty-three">73</div>
+                <div id="72" class="eighth-block number number-eighty-two">72</div>
+                <div id="71" class="eighth-block number number-eighty-one">71</div>
+            </div>
+
+            <div class="row-seven">
+                <div id="61" class="eighth-block number number-seventy-one">61</div>
+                <div id="62" class="eighth-block number number-seventy-two">62</div>
+                <div id="63" class="eighth-block number number-seventy-three">63</div>
+                <div id="64" class="eighth-block number number-seventy-four">64</div>
+                <div id="65" class="eighth-block number number-seventy-five">65</div>
+                <div id="66" class="eighth-block number number-seventy-six">66</div>
+                <div id="67" class="eighth-block number number-seventy-seven">67</div>
+                <div id="68" class="eighth-block number number-seventy-eight">68</div>
+                <div id="69" class="eighth-block number number-seventy-nine">69</div>
+                <div id="70" class="eighth-block number seventh-end number-seventy">70</div>
+            </div>
+
+            <div class="row-six">
+                <div id="60" class="sixth-block number sixth-end number-sixty">60</div>
+                <div id="59" class="sixth-block number number-sixth-nine">59</div>
+                <div id="58" class="sixth-block number number-sixth-eight">58</div>
+                <div id="57" class="sixth-block number number-sixth-seven">57</div>
+                <div id="56" class="sixth-block number number-sixth-six">56</div>
+                <div id="55" class="sixth-block number number-sixth-five">55</div>
+                <div id="54" class="sixth-block number number-sixth-four">54</div>
+                <div id="53" class="sixth-block number number-sixth-three">53</div>
+                <div id="52" class="sixth-block number number-sixth-two">52</div>
+                <div id="51" class="sixth-block number number-sixth-one">51</div>
+            </div>
+
+            <div class="row-five">
+                <div id="41" class="fifth-block number number-fifth-one">41</div>
+                <div id="42" class="fifth-block number number-fifth-two">42</div>
+                <div id="43" class="fifth-block number number-fifth-three">43</div>
+                <div id="44" class="fifth-block number number-fifth-four">44</div>
+                <div id="45" class="fifth-block number number-fifth-five">45</div>
+                <div id="46" class="fifth-block number number-fifth-six">46</div>
+                <div id="47" class="fifth-block number number-fifth-seven">47</div>
+                <div id="48" class="fifth-block number number-fifth-eight">48</div>
+                <div id="49" class="fifth-block number number-fifth-nine">49</div>
+                <div id="50" class="fifth-block number fifth-end number-fifty">50</div>
+            </div>
+
+            <div class="row-four">
+                <div id="40" class="fourth-block number fourth-end number-fourty">40</div>
+                <div id="39" class="fourth-block number number-four-one">39</div>
+                <div id="38" class="fourth-block number number-four-one">38</div>
+                <div id="37" class="fourth-block number number-four-one">37</div>
+                <div id="36" class="fourth-block number number-four-one">36</div>
+                <div id="35" class="fourth-block number number-four-one">35</div>
+                <div id="34" class="fourth-block number number-four-one">34</div>
+                <div id="33" class="fourth-block number number-four-one">33</div>
+                <div id="32" class="fourth-block number number-four-one">32</div>
+                <div id="31" class="fourth-block number number-four-one">31</div>
+            </div>
+
+            <div class="row-three">
+                <div id="21" class="third-block number number-third-one">21</div>
+                <div id="22" class="third-block number number-third-two">22</div>
+                <div id="23" class="third-block number number-third-three">23</div>
+                <div id="24" class="third-block number number-third-four">24</div>
+                <div id="25" class="third-block number number-third-five">25</div>
+                <div id="26" class="third-block number number-third-six">26</div>
+                <div id="27" class="third-block number number-third-seven">27</div>
+                <div id="28" class="third-block number number-third-eight">28</div>
+                <div id="29" class="third-block number number-third-nine">29</div>
+                <div id="30" class="third-block number third-end number-thirty">30</div>
+            </div>
+
+            <div class="row-two">
+                <div id="20" class="second-block number second-end number-twenty">20</div>
+                <div id="19" class="second-block number number-second-nine">19</div>
+                <div id="18" class="second-block number number-second-eight">18</div>
+                <div id="17" class="second-block number number-second-seven">17</div>
+                <div id="16" class="second-block number number-second-six">16</div>
+                <div id="15" class="second-block number number-second-five">15</div>
+                <div id="14" class="second-block number number-second-four">14</div>
+                <div id="13" class="second-block number number-second-three">13</div>
+                <div id="12" class="second-block number number-second-two">12</div>
+                <div id="11" class="second-block number number-second-one">11</div>
+            </div>
+
+            
+            <div class="row-one">
+                <div id="1" class=" active first-block number number-one">
+                    <span id="move-icon">1</span>
+                </div>
+
+                <div id="2" class="first-block number number-two">2</div>
+                <div id="3" class="first-block number number-three">3</div>
+                <div id="4" class="first-block number number-four">4</div>
+                <div id="5" class="first-block number number-five">5</div>
+                <div id="6" class="first-block number number-six">6</div>
+                <div id="7" class="first-block number number-seven">7</div>
+                <div id="8" class="first-block number number-eight">8</div>
+                <div id="9" class="first-block number number-nine">9</div>
+                <div id="10" class="first-block number first end number-ten">10</div>
+            </div>
+
+
+
+        </div>
+
+        <div class="players">
+            <div id="currentPlayerOne"></div>
+            <div id="currentPlayerTwo"></div>
+        </div>
+
+        <div class="side-section">
+
+            <div class="dice">
+                <h2 id="dice-header">Dice Result : <span><p id="dice-result"></p></span> </h2>
+                <h2 id="player">Player :<span id="display-player"></span></h2>
+            </div>
+
+            <div class="button-section">
+                <button class="dice-button">Press Here</button>
+                
+            </div>
+
+
+        </div>
+        
+    </div>
+
+    <script src="./Snake and Ladder Game_files/index.js"></script>
+<!-- Code injected by live-server -->
+<script type="text/javascript">
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body></html>

@@ -1,0 +1,59 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body{
+    background-color: steelblue;
+    width:100vw;
+    height:100vh;
+
+}
+
+.container{
+    width:80%;
+    height:20vh;
+    background: rgb(133, 75, 133);
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    margin: 1rem;
+    border:2px solid white;
+
+}
+
+input,label{
+    margin:1rem;
+    color:white;
+    font-size:1rem;
+
+}
+input{
+    color:black;
+}
+button{
+    padding:0.4rem;
+    margin-left:1rem;
+    border-radius: 6px;
+}
+.projects{
+    border: 1px solid white;
+    margin: 1rem;
+    width:80%;
+    height:20vh;
+    background: rgb(109, 109, 72);
+    display: flex;
+    justify-content: space-around;
+}
+
+.projects header{
+    border: 1px solid white;
+    margin-top: 1rem;
+    width:80%;
+    height:20%;
+    background: #000;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+}
