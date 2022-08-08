@@ -11,15 +11,16 @@ function view() {
     console.log(rowValue);
     var colValue = parseInt(column === null || column === void 0 ? void 0 : column.value);
     console.log(colValue);
-    for (var i = 0; i < rowValue; i++) {
+    for (var i = 1; i <= rowValue; i++) {
         // console.log("its working");
-        if (rowValue <= colValue) {
-            for (var j = 0; j < colValue; j++) {
-                var divElement = document.createElement("div");
-                divElement.classList.add("divStyle");
-                bodyElement.append(divElement);
-                console.log(divElement);
-            }
+        for (var j = 1; j <= colValue; j++) {
+            var divElement = document.createElement("div");
+            divElement.classList.add("divStyle");
+            bodyElement.append(divElement);
+            console.log(divElement);
+        }
+        if (rowValue === colValue) {
+            document.write("<br>");
         }
     }
 }
