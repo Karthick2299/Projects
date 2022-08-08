@@ -1,11 +1,72 @@
-#app{
-    margin:1rem;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins";
 }
-.divStyle{
-    width:3rem;
-    height:3rem;
-    border: 1px solid black;
-   display: inline-block;
-   padding:0.5rem;
-   margin: 0 0.2rem;
+body {
+  width: 100vw;
+  height: 100vh;
+  /* display: flex;
+    justify-content: center; */
+}
+
+.custom {
+  margin: 1rem auto;
+  display: flex;
+  width: 50%;
+  justify-content: space-evenly;
+  height: 12vh;
+  border: 1px solid rgb(139, 189, 235);
+}
+#form {
+    display: flex;
+    justify-content: space-evenly;
+  margin: auto 0;
+  border:1px solid black;
+  padding:1rem;
+}
+
+#form input {
+  margin: 0 3rem 0 0.5rem;
+  font-family: inherit;
+}
+
+.buttons{
+    display: flex;
+    border:1px solid black;
+    height:3.7rem;
+    margin: auto 0;
+}
+
+ button {
+  width: 8rem;
+  height: 1.6rem;
+  text-transform: uppercase;
+  font-weight: 200;
+  margin: auto 1rem;
+}
+
+.main-div{
+    display: flex;
+    justify-content: center;
+    margin: 1rem auto;
+    width:60%;
+    padding: 1rem;
+}
+
+
+ .appStyle{
+    border:3px solid steelblue;
+    padding:1rem;
+ }
+
+.divStyle {
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid black;
+  display:inline-block;
+  padding: 0.5rem;
+  margin: 0 0.2rem;
+  
 }

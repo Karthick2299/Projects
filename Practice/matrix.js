@@ -1,26 +1,49 @@
-//for practicing multi dimensional array in ts
-// var mat:number[][] = [[1,2,3], [4,5,6]];
-// console.log(mat);
-// console.log(mat[0][2]);
 //get input value from User
+var mainDivTag = document.getElementById("mainDiv");
 var bodyElement = document.getElementById("app");
 var row = document.getElementById("row");
 var column = document.getElementById("col");
-function view() {
+var formElement = document.getElementById("form");
+function create() {
     var rowValue = parseInt(row === null || row === void 0 ? void 0 : row.value);
-    console.log(rowValue);
     var colValue = parseInt(column === null || column === void 0 ? void 0 : column.value);
-    console.log(colValue);
     for (var i = 1; i <= rowValue; i++) {
-        // console.log("its working");
+        //create break tag
+        var br = document.createElement("br");
         for (var j = 1; j <= colValue; j++) {
+            //create a div Element
             var divElement = document.createElement("div");
+            //adding style to created div element
             divElement.classList.add("divStyle");
+            //set id to div
+            divElement.setAttribute("id", "divId");
+            //add the created div element to another div(parent div)
             bodyElement.append(divElement);
+            //add styles to parent div
+            bodyElement.classList.add("appStyle");
             console.log(divElement);
         }
-        if (rowValue === colValue) {
-            document.write("<br>");
-        }
+        //adding break tag for forming the correct matrix pattern.
+        bodyElement.appendChild(br);
+    }
+    //checking the invalid input values
+    if (rowValue === null ||
+        rowValue < 0 ||
+        rowValue === 0 ||
+        colValue === 0 ||
+        colValue === null ||
+        colValue < 0) {
+        console.log("Invalid Input");
+    }
+}
+//reset Function
+function reset() {
+    console.log("reset working");
+    formElement.reset();
+    var divId = document.getElementById("divId");
+    bodyElement.classList.remove("appStyle");
+    //deleting div elements in HTML using while loop
+    while (bodyElement.firstChild) {
+        bodyElement.removeChild(bodyElement.firstChild);
     }
 }
