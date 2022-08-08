@@ -4,12 +4,16 @@ var bodyElement = <HTMLBodyElement>document.getElementById("app");
 var row = <HTMLInputElement>document.getElementById("row");
 var column = <HTMLInputElement>document.getElementById("col");
 var formElement = <HTMLFormElement>document.getElementById("form");
+var mineInput = <HTMLInputElement>document.getElementById("mines");
 
 function create() {
   let rowValue = parseInt(row?.value);
 
   let colValue = parseInt(column?.value);
+    //getting mine value from user
+  let mineValue = parseInt(mineInput?.value);
 
+  //for loops for creating div elements.
   for (let i = 1; i <= rowValue; i++) {
     //create break tag
     var br = document.createElement("br");
@@ -31,6 +35,17 @@ function create() {
     bodyElement.appendChild(br);
   }
 
+  const totalDivs = rowValue + colValue;
+  console.log(totalDivs);
+
+  //forloop for placing mines randomly in div.
+  var getDivCreatedElement = document.querySelectorAll("#divId");
+  console.log(getDivCreatedElement);
+
+  var randomNumber = Math.floor(Math.random() * totalDivs);
+
+
+
   //checking the invalid input values
   if (
     rowValue === null ||
@@ -42,6 +57,7 @@ function create() {
   ) {
     console.log("Invalid Input");
   }
+  
 }
 
 //reset Function
