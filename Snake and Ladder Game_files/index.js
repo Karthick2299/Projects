@@ -138,6 +138,14 @@ function FirstPlayerConditionFunction(
             .removeClass("active-1");
           break;
 
+        case 80:
+          currentPlayerTwo = 100;
+          $(`#${currentPlayerTwo}`)
+            .addClass("active-2")
+            .siblings()
+            .removeClass("active-2");
+          break;
+
         //*for Snakes
 
         case 17:
@@ -173,7 +181,6 @@ function FirstPlayerConditionFunction(
           break;
 
         case 87:
-       
           currentPlayerOne = 24;
           $(`#${currentPlayerOne}`)
             .addClass("active-1")
@@ -182,7 +189,6 @@ function FirstPlayerConditionFunction(
           break;
 
         case 93:
-       
           currentPlayerOne = 73;
           $(`#${currentPlayerOne}`)
             .addClass("active-1")
@@ -298,6 +304,14 @@ function SecondPlayerConditionFunction(
 
         case 71:
           currentPlayerTwo = 91;
+          $(`#${currentPlayerTwo}`)
+            .addClass("active-2")
+            .siblings()
+            .removeClass("active-2");
+          break;
+
+        case 80:
+          currentPlayerTwo = 100;
           $(`#${currentPlayerTwo}`)
             .addClass("active-2")
             .siblings()
