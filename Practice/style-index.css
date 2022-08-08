@@ -20,11 +20,11 @@ body {
   border: 1px solid rgb(139, 189, 235);
 }
 #form {
-    display: flex;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
   margin: auto 0;
-  border:1px solid black;
-  padding:1rem;
+  border: 1px solid black;
+  padding: 1rem;
 }
 
 #form input {
@@ -32,14 +32,14 @@ body {
   font-family: inherit;
 }
 
-.buttons{
-    display: flex;
-    border:1px solid black;
-    height:3.7rem;
-    margin: auto 0;
+.buttons {
+  display: flex;
+  border: 1px solid black;
+  height: 3.7rem;
+  margin: auto 0;
 }
 
- button {
+button {
   width: 8rem;
   height: 1.6rem;
   text-transform: uppercase;
@@ -47,26 +47,24 @@ body {
   margin: auto 1rem;
 }
 
-.main-div{
-    display: flex;
-    justify-content: center;
-    margin: 1rem auto;
-    width:60%;
-    padding: 1rem;
+.main-div {
+  display: flex;
+  justify-content: center;
+  margin: 1rem auto;
+  width: 60%;
+  padding: 1rem;
 }
 
-
- .appStyle{
-    border:3px solid steelblue;
-    padding:1rem;
- }
+.appStyle {
+  border: 3px solid steelblue;
+  padding: 1rem;
+}
 
 .divStyle {
   width: 3rem;
   height: 3rem;
   border: 1px solid black;
-  display:inline-block;
+  display: inline-block;
   padding: 0.5rem;
   margin: 0 0.2rem;
-  
 }
