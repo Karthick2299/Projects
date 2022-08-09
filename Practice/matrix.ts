@@ -6,11 +6,14 @@ var column = <HTMLInputElement>document.getElementById("col");
 var formElement = <HTMLFormElement>document.getElementById("form");
 var mineInput = <HTMLInputElement>document.getElementById("mines");
 
+//check whether the create function is clicked or not.
+let count;
+
 function create() {
   let rowValue = parseInt(row?.value);
 
   let colValue = parseInt(column?.value);
-    //getting mine value from user
+  //getting mine value from user
   let mineValue = parseInt(mineInput?.value);
 
   //for loops for creating div elements.
@@ -25,7 +28,7 @@ function create() {
       divElement.classList.add("divStyle");
       //set id to div
       divElement.setAttribute("id", "divId");
-      //add the created div element to another div(parent div)
+      //add the created div element to another div(parent droytuiv)
       bodyElement.append(divElement);
       //add styles to parent div
       bodyElement.classList.add("appStyle");
@@ -33,19 +36,27 @@ function create() {
     }
     //adding break tag for forming the correct matrix pattern.
     bodyElement.appendChild(br);
-  }
+  } 
 
-  const totalDivs = rowValue + colValue;
+  const totalDivs = rowValue * colValue;
   console.log(totalDivs);
 
   //forloop for placing mines randomly in div.
+  // console.log(getDivCreatedElement);
+  
   var getDivCreatedElement = document.querySelectorAll("#divId");
-  console.log(getDivCreatedElement);
+  
+  for(let a = 0; a < totalDivs; a++){
+    var thisDiv = totalDivs[a];
+    
+    
+    var randomNumber = Math.floor(Math.random() * thisDiv) + 1;
+    
+    console.log("random Number " + randomNumber);
 
-  var randomNumber = Math.floor(Math.random() * totalDivs);
+  }
 
-
-
+  
   //checking the invalid input values
   if (
     rowValue === null ||
@@ -57,7 +68,6 @@ function create() {
   ) {
     console.log("Invalid Input");
   }
-  
 }
 
 //reset Function
@@ -68,6 +78,14 @@ function reset() {
 
   bodyElement.classList.remove("appStyle");
   //deleting div elements in HTML using while loop
+  while (bodyElement.firstChild) {
+    bodyElement.removeChild(bodyElement.firstChild);
+  }
+}
+
+//delete the boxes if we want to create boxes again.
+
+function deleteContent() {
   while (bodyElement.firstChild) {
     bodyElement.removeChild(bodyElement.firstChild);
   }
