@@ -4,9 +4,13 @@ var bodyElement = document.getElementById("app");
 var row = document.getElementById("row");
 var column = document.getElementById("col");
 var formElement = document.getElementById("form");
+var mineInput = document.getElementById("mines");
 function create() {
     var rowValue = parseInt(row === null || row === void 0 ? void 0 : row.value);
     var colValue = parseInt(column === null || column === void 0 ? void 0 : column.value);
+    //getting mine value from user
+    var mineValue = parseInt(mineInput === null || mineInput === void 0 ? void 0 : mineInput.value);
+    //for loops for creating div elements.
     for (var i = 1; i <= rowValue; i++) {
         //create break tag
         var br = document.createElement("br");
@@ -26,6 +30,11 @@ function create() {
         //adding break tag for forming the correct matrix pattern.
         bodyElement.appendChild(br);
     }
+    var totalDivs = rowValue + colValue;
+    console.log(totalDivs);
+    //forloop for placing mines randomly in div.
+    var getDivCreatedElement = document.querySelectorAll("#divId");
+    console.log(getDivCreatedElement);
     //checking the invalid input values
     if (rowValue === null ||
         rowValue < 0 ||
