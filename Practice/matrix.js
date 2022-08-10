@@ -7,7 +7,7 @@ var formElement = document.getElementById("form");
 var mineInput = document.getElementById("mines");
 //check whether the create function is clicked or not.
 function create() {
-    var count = 1;
+    var count = 0;
     var rowValue = parseInt(row === null || row === void 0 ? void 0 : row.value);
     var colValue = parseInt(column === null || column === void 0 ? void 0 : column.value);
     //getting mine value from user
@@ -60,32 +60,31 @@ function placeMines(mineInputValue, totalDivs) {
 //get Random number for mines
 //this function for getting non-repeating random Numbers.
 function getRandomMines(mineValue, totalDivs) {
+    var _a;
     console.log(mineValue);
     if (mineValue.length == 0) {
         console.log("No More Random Numbers");
     }
-    var randomNums = [];
-    var j = 0;
-    // while (randomNums.length <= mineValue.length) {
-    //   console.log("while loop is working");
-    //    var randomValues = Math.floor(Math.random() * totalDivs);
-    //   randomNums.push(randomValues);
-    //   console.log(randomValues);
-    //   // ArrayOfMines.splice(j, 1);
-    // }
-    var demo = [];
     var uniqueValues = [];
-    for (var i = 1; i <= mineValue; i++) {
+    var uniqueArrayLength = uniqueValues.length;
+    while (uniqueValues.length < mineValue) {
         var randomNumbers = Math.floor(Math.random() * totalDivs);
-        demo.push(randomNumbers);
+        console.log(randomNumbers);
         if (!uniqueValues.includes(randomNumbers)) {
             uniqueValues.push(randomNumbers);
+            // for(let i = 0 ; i < totalDivs.length; i++){
+            //   totalDivs
+            // }
         }
     }
+    for (var i = 0; i < uniqueValues.length; i++) {
+        var id = uniqueValues[i];
+        console.log(document.getElementById("divId".concat(id)));
+        var divs = (_a = document.getElementById("divId".concat(id))) === null || _a === void 0 ? void 0 : _a.classList.add("random");
+    }
+    console.log("unique values");
     console.log(uniqueValues);
-    console.log("demoArray");
-    console.log(demo);
-    return randomNums;
+    return uniqueValues;
 } //End of getRandomMines Function.
 //reset Function
 function reset() {

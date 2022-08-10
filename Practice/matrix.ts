@@ -9,7 +9,7 @@ var mineInput = <HTMLInputElement>document.getElementById("mines");
 //check whether the create function is clicked or not.
 
 function create() {
-  let count = 1;
+  let count = 0;
   let rowValue: number = parseInt(row?.value);
 
   let colValue: number = parseInt(column?.value);
@@ -34,6 +34,7 @@ function create() {
 
       //set id to div
       divElement.setAttribute("id", `divId${count++}`);
+      
       //add the created div element to another div(parent div)
       bodyElement.append(divElement);
       //add styles to parent div
@@ -83,33 +84,37 @@ function getRandomMines(mineValue, totalDivs): number[] {
     console.log("No More Random Numbers");
   }
 
-  const randomNums: number[] = [];
-  let j = 0;
-
-  // while (randomNums.length <= mineValue.length) {
-
-  //   console.log("while loop is working");
-  //    var randomValues = Math.floor(Math.random() * totalDivs);
-  //   randomNums.push(randomValues);
-  //   console.log(randomValues);
-  //   // ArrayOfMines.splice(j, 1);
-  // }
-
-  const demo: number[] = [];
+  
   const uniqueValues: number[] = [];
-  for (let i = 1; i <= mineValue; i++) {
-    var randomNumbers = Math.floor(Math.random() * totalDivs);
-    demo.push(randomNumbers);
 
+  let uniqueArrayLength = uniqueValues.length;
+ 
+
+  while (uniqueValues.length < mineValue) {
+  
+    var randomNumbers = Math.floor(Math.random() * totalDivs);
+    console.log(randomNumbers)
     if (!uniqueValues.includes(randomNumbers)) {
       uniqueValues.push(randomNumbers);
+      // for(let i = 0 ; i < totalDivs.length; i++){
+      //   totalDivs
+      // }
     }
+ 
   }
-  console.log(uniqueValues);
-  console.log("demoArray");
-  console.log(demo);
 
-  return randomNums;
+  for( let i = 0; i< uniqueValues.length ; i++){
+    const id = uniqueValues[i];
+    console.log(document.getElementById(`divId${id}`));
+    const divs = document.getElementById(`divId${id}`)?.classList.add("random");
+  }
+
+
+
+  console.log("unique values");
+  console.log(uniqueValues);
+
+  return uniqueValues;
 } //End of getRandomMines Function.
 
 //reset Function
