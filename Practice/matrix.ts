@@ -7,14 +7,19 @@ var formElement = <HTMLFormElement>document.getElementById("form");
 var mineInput = <HTMLInputElement>document.getElementById("mines");
 
 //check whether the create function is clicked or not.
-let count;
 
 function create() {
-  let rowValue = parseInt(row?.value);
+  let count = 1;
+  let rowValue: number = parseInt(row?.value);
 
-  let colValue = parseInt(column?.value);
+  let colValue: number = parseInt(column?.value);
   //getting mine value from user
-  let mineValue = parseInt(mineInput?.value);
+  let mineValue: number = parseInt(mineInput?.value);
+
+  // //store length of the Input fields
+  // let rowLength: number = mineInput.value.length;
+  // let colLength: number = mineInput.value.length;
+  // let mineLength: number = mineInput.value.length;
 
   //for loops for creating div elements.
   for (let i = 1; i <= rowValue; i++) {
@@ -26,9 +31,10 @@ function create() {
       const divElement = document.createElement("div");
       //adding style to created div element
       divElement.classList.add("divStyle");
+
       //set id to div
-      divElement.setAttribute("id", "divId");
-      //add the created div element to another div(parent droytuiv)
+      divElement.setAttribute("id", `divId${count++}`);
+      //add the created div element to another div(parent div)
       bodyElement.append(divElement);
       //add styles to parent div
       bodyElement.classList.add("appStyle");
@@ -36,57 +42,92 @@ function create() {
     }
     //adding break tag for forming the correct matrix pattern.
     bodyElement.appendChild(br);
-  } 
+  }
 
   const totalDivs = rowValue * colValue;
-  console.log(totalDivs);
+  console.log("total Divs " + totalDivs);
 
-  //forloop for placing mines randomly in div.
-  // console.log(getDivCreatedElement);
-  
-  var getDivCreatedElement = document.querySelectorAll("#divId");
-  
-  for(let a = 0; a < totalDivs; a++){
-    var thisDiv = totalDivs[a];
-    
-    
-    var randomNumber = Math.floor(Math.random() * thisDiv) + 1;
-    
-    console.log("random Number " + randomNumber);
+  var getDivCreatedElement = document.querySelectorAll(".divStyle");
 
+  placeMines(mineValue, totalDivs);
+} //End of Create Function
+
+//function for placing mines
+
+function placeMines(mineInputValue: number, totalDivs): void {
+  console.log("Given Mine values " + mineInputValue);
+
+  var anotherDiv = document.querySelectorAll(".divStyle");
+
+  const mineArray: number[] = [];
+  //adding mine input values into array using for loop
+
+  for (let i = 1; i <= mineInputValue; i++) {
+    mineArray.push(i);
   }
 
-  
-  //checking the invalid input values
-  if (
-    rowValue === null ||
-    rowValue < 0 ||
-    rowValue === 0 ||
-    colValue === 0 ||
-    colValue === null ||
-    colValue < 0
-  ) {
-    console.log("Invalid Input");
+  // console.log("Mine input value from for loop" + mineArray);
+
+  //place the random number in Divs
+  var randomValue = getRandomMines(mineInputValue, totalDivs);
+  console.log("mine input value " + mineInputValue);
+  console.log("random Values variable");
+  console.log(randomValue);
+} //End of placeMines function
+
+//get Random number for mines
+//this function for getting non-repeating random Numbers.
+function getRandomMines(mineValue, totalDivs): number[] {
+  console.log(mineValue);
+  if (mineValue.length == 0) {
+    console.log("No More Random Numbers");
   }
-}
+
+  const randomNums: number[] = [];
+  let j = 0;
+
+  // while (randomNums.length <= mineValue.length) {
+
+  //   console.log("while loop is working");
+  //    var randomValues = Math.floor(Math.random() * totalDivs);
+  //   randomNums.push(randomValues);
+  //   console.log(randomValues);
+  //   // ArrayOfMines.splice(j, 1);
+  // }
+
+  const demo: number[] = [];
+  const uniqueValues: number[] = [];
+  for (let i = 1; i <= mineValue; i++) {
+    var randomNumbers = Math.floor(Math.random() * totalDivs);
+    demo.push(randomNumbers);
+
+    if (!uniqueValues.includes(randomNumbers)) {
+      uniqueValues.push(randomNumbers);
+    }
+  }
+  console.log(uniqueValues);
+  console.log("demoArray");
+  console.log(demo);
+
+  return randomNums;
+} //End of getRandomMines Function.
 
 //reset Function
 function reset() {
   console.log("reset working");
   formElement.reset();
-  var divId = <HTMLDivElement>document.getElementById("divId");
 
   bodyElement.classList.remove("appStyle");
   //deleting div elements in HTML using while loop
   while (bodyElement.firstChild) {
     bodyElement.removeChild(bodyElement.firstChild);
   }
-}
+} //End of reset Function.
 
 //delete the boxes if we want to create boxes again.
 
-function deleteContent() {
-  while (bodyElement.firstChild) {
-    bodyElement.removeChild(bodyElement.firstChild);
-  }
-}
+// function deleteContent() {
+//   while (bodyElement.firstChild) {
+//     bodyElement.removeChild(bodyElement.firstChild);
+//   }
+// } //End of deleteContent Function
