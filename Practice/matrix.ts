@@ -9,54 +9,58 @@ var mineInput = <HTMLInputElement>document.getElementById("mines");
 //check whether the create function is clicked or not.
 let clicked: number = 1;
 
-
 function create() {
-  if(clicked === 1){
-  let count = 0;
-  let rowValue: number = parseInt(row?.value);
+  if (clicked === 1) {
+    let count = 0;
+    let rowValue: number = parseInt(row?.value);
 
-  let colValue: number = parseInt(column?.value);
-  //getting mine value from user
-  let mineValue: number = parseInt(mineInput?.value);
+    let colValue: number = parseInt(column?.value);
+    //getting mine value from user
+    let mineValue: number = parseInt(mineInput?.value);
 
-  // //store length of the Input fields
-  // let rowLength: number = mineInput.value.length;
-  // let colLength: number = mineInput.value.length;
-  // let mineLength: number = mineInput.value.length;
-
-  //for loops for creating div elements.
-  for (let i = 1; i <= rowValue; i++) {
-    //create break tag
-    var br = document.createElement("br");
-
-    for (let j = 1; j <= colValue; j++) {
-      //create a div Element
-      const divElement = document.createElement("div");
-      //adding style to created div element
-      divElement.classList.add("divStyle");
-
-      //set id to div
-      divElement.setAttribute("id", `divId${count++}`);
-      
-      //add the created div element to another div(parent div)
-      bodyElement.append(divElement);
-      //add styles to parent div
-      bodyElement.classList.add("appStyle");
-      console.log(divElement);
+    if (rowValue <= 0 || rowValue === null) {
+      console.log("condition working");
     }
-    //adding break tag for forming the correct matrix pattern.
-    bodyElement.appendChild(br);
-  }
+    //for loops for creating div elements.
+    for (let i = 1; i <= rowValue; i++) {
+      //create break tag
+      var br = document.createElement("br");
 
-  const totalDivs = rowValue * colValue;
-  console.log("total Divs " + totalDivs);
+      for (let j = 1; j <= colValue; j++) {
+        //create a div Element
+        const divElement = document.createElement("div");
 
-  var getDivCreatedElement = document.querySelectorAll(".divStyle");
+        if (rowValue <= 10 || colValue <= 10) {
+          //adding style to created div element
+          divElement.classList.add("divStyle");
+        } else if (
+          (rowValue >= 11 || colValue >= 11) &&
+          (rowValue <= 14 || colValue <= 14)
+        ) {
+          divElement.classList.add("divStyle2");
+        } else if (rowValue >= 15 || colValue >= 15) {
+          divElement.classList.add("divStyle3");
+        }
 
-  placeMines(mineValue, totalDivs);
-  clicked++;
-}//End of if condition
+        //set id to div
+        divElement.setAttribute("id", `divId${count++}`);
 
+        //add the created div element to another div(parent div)
+        bodyElement.append(divElement);
+        //add styles to parent div
+        bodyElement.classList.add("appStyle");
+        console.log(divElement);
+      }
+      //adding break tag for forming the correct matrix pattern.
+      bodyElement.appendChild(br);
+    }
+
+    const totalDivs = rowValue * colValue;
+    console.log("total Divs " + totalDivs);
+
+    placeMines(mineValue, totalDivs);
+    clicked++;
+  } //End of if condition
 } //End of Create Function
 
 //function for placing mines
@@ -73,54 +77,53 @@ function placeMines(mineInputValue: number, totalDivs): void {
     mineArray.push(i);
   }
 
-  // console.log("Mine input value from for loop" + mineArray);
+  let rowValues = parseInt(row?.value);
+  let colValues = parseInt(column?.value);
 
   //place the random number in Divs
-  var randomValue = getRandomMines(mineInputValue, totalDivs);
+  var randomValue = getRandomMines(
+    mineInputValue,
+    totalDivs,
+    rowValues,
+    colValues
+  );
   console.log("mine input value " + mineInputValue);
-  console.log("random Values variable");
-  console.log(randomValue);
 } //End of placeMines function
 
 //get Random number for mines
 //this function for getting non-repeating random Numbers.
-function getRandomMines(mineValue, totalDivs): number[] {
+function getRandomMines(mineValue, totalDivs, row, column): void {
   console.log(mineValue);
   if (mineValue.length == 0) {
     console.log("No More Random Numbers");
   }
 
-  
   const uniqueValues: number[] = [];
 
-  let uniqueArrayLength = uniqueValues.length;
- 
-
-  while (uniqueValues.length < mineValue) {
-  
-    var randomNumbers = Math.floor(Math.random() * totalDivs);
-    console.log(randomNumbers)
-    if (!uniqueValues.includes(randomNumbers)) {
-      uniqueValues.push(randomNumbers);
-      // for(let i = 0 ; i < totalDivs.length; i++){
-      //   totalDivs
-      // }
+  if (row >= 1 && column >= 1) {
+    while (uniqueValues.length < mineValue) {
+      var randomNumbers = Math.floor(Math.random() * totalDivs);
+      console.log(randomNumbers);
+      if (!uniqueValues.includes(randomNumbers)) {
+        uniqueValues.push(randomNumbers);
+      }
     }
- 
+
+    for (let i = 0; i < uniqueValues.length; i++) {
+      const id = uniqueValues[i];
+      console.log(document.getElementById(`divId${id}`));
+      const divs = document
+        .getElementById(`divId${id}`)
+        ?.classList.add("random");
+    }
+  } else if (row === 0 || column === 0) {
+    console.log("Cannot create table with zero values");
+    console.log("row value or column value must be Greater than zero");
+  } else {
+    console.log("row and column fields must be filled!!!");
   }
 
-  for( let i = 0; i< uniqueValues.length ; i++){
-    const id = uniqueValues[i];
-    console.log(document.getElementById(`divId${id}`));
-    const divs = document.getElementById(`divId${id}`)?.classList.add("random");
-  }
-
-
-
-  console.log("unique values");
-  console.log(uniqueValues);
-
-  return uniqueValues;
+  var divTags = addClickEvent(totalDivs);
 } //End of getRandomMines Function.
 
 //reset Function
@@ -136,10 +139,22 @@ function reset() {
   }
 } //End of reset Function.
 
-//delete the boxes if we want to create boxes again.
+function addClickEvent(totalDivs) {
+  for (let i = 0; i < totalDivs; i++) {
+    const divs = document.getElementById(`divId${i}`);
+    if (divs !== null) {
+      divs.addEventListener("click", function (event) {
+        console.log("from div tags");
+      });
+    } else {
+      console.log("div value is null");
+      console.log("else condition satisfied");
+    }
+  }
+}
 
-// function deleteContent() {
-//   while (bodyElement.firstChild) {
-//     bodyElement.removeChild(bodyElement.firstChild);
+// for (let i = 0; i < divElements.length; i++) {
+//   for (let j = 0; j < 3; j++) {
+//     console.log(i);
 //   }
-// } //End of deleteContent Function
+// }

@@ -14,10 +14,9 @@ function create() {
         var colValue = parseInt(column === null || column === void 0 ? void 0 : column.value);
         //getting mine value from user
         var mineValue = parseInt(mineInput === null || mineInput === void 0 ? void 0 : mineInput.value);
-        // //store length of the Input fields
-        // let rowLength: number = mineInput.value.length;
-        // let colLength: number = mineInput.value.length;
-        // let mineLength: number = mineInput.value.length;
+        if (rowValue <= 0 || rowValue === null) {
+            console.log("condition working");
+        }
         //for loops for creating div elements.
         for (var i = 1; i <= rowValue; i++) {
             //create break tag
@@ -25,8 +24,16 @@ function create() {
             for (var j = 1; j <= colValue; j++) {
                 //create a div Element
                 var divElement = document.createElement("div");
-                //adding style to created div element
-                divElement.classList.add("divStyle");
+                if (rowValue <= 10 || colValue <= 10) {
+                    //adding style to created div element
+                    divElement.classList.add("divStyle");
+                }
+                else if ((rowValue >= 11 || colValue >= 11) && (rowValue <= 14 || colValue <= 14)) {
+                    divElement.classList.add("divStyle2");
+                }
+                else if (rowValue >= 15 || colValue >= 15) {
+                    divElement.classList.add("divStyle3");
+                }
                 //set id to div
                 divElement.setAttribute("id", "divId".concat(count++));
                 //add the created div element to another div(parent div)
@@ -40,7 +47,6 @@ function create() {
         }
         var totalDivs = rowValue * colValue;
         console.log("total Divs " + totalDivs);
-        var getDivCreatedElement = document.querySelectorAll(".divStyle");
         placeMines(mineValue, totalDivs);
         clicked++;
     } //End of if condition
@@ -54,41 +60,44 @@ function placeMines(mineInputValue, totalDivs) {
     for (var i = 1; i <= mineInputValue; i++) {
         mineArray.push(i);
     }
-    // console.log("Mine input value from for loop" + mineArray);
+    var rowValues = parseInt(row === null || row === void 0 ? void 0 : row.value);
+    var colValues = parseInt(column === null || column === void 0 ? void 0 : column.value);
     //place the random number in Divs
-    var randomValue = getRandomMines(mineInputValue, totalDivs);
+    var randomValue = getRandomMines(mineInputValue, totalDivs, rowValues, colValues);
     console.log("mine input value " + mineInputValue);
-    console.log("random Values variable");
-    console.log(randomValue);
 } //End of placeMines function
 //get Random number for mines
 //this function for getting non-repeating random Numbers.
-function getRandomMines(mineValue, totalDivs) {
+function getRandomMines(mineValue, totalDivs, row, column) {
     var _a;
     console.log(mineValue);
     if (mineValue.length == 0) {
         console.log("No More Random Numbers");
     }
     var uniqueValues = [];
-    var uniqueArrayLength = uniqueValues.length;
-    while (uniqueValues.length < mineValue) {
-        var randomNumbers = Math.floor(Math.random() * totalDivs);
-        console.log(randomNumbers);
-        if (!uniqueValues.includes(randomNumbers)) {
-            uniqueValues.push(randomNumbers);
-            // for(let i = 0 ; i < totalDivs.length; i++){
-            //   totalDivs
-            // }
+    if (row >= 1 && column >= 1) {
+        while (uniqueValues.length < mineValue) {
+            var randomNumbers = Math.floor(Math.random() * totalDivs);
+            console.log(randomNumbers);
+            if (!uniqueValues.includes(randomNumbers)) {
+                uniqueValues.push(randomNumbers);
+            }
+        }
+        for (var i = 0; i < uniqueValues.length; i++) {
+            var id = uniqueValues[i];
+            console.log(document.getElementById("divId".concat(id)));
+            var divs = (_a = document
+                .getElementById("divId".concat(id))) === null || _a === void 0 ? void 0 : _a.classList.add("random");
         }
     }
-    for (var i = 0; i < uniqueValues.length; i++) {
-        var id = uniqueValues[i];
-        console.log(document.getElementById("divId".concat(id)));
-        var divs = (_a = document.getElementById("divId".concat(id))) === null || _a === void 0 ? void 0 : _a.classList.add("random");
+    else if (row === 0 || column === 0) {
+        console.log("Cannot create table with zero values");
+        console.log("row value or column value must be Greater than zero");
     }
-    console.log("unique values");
-    console.log(uniqueValues);
-    return uniqueValues;
+    else {
+        console.log("row and column fields must be filled!!!");
+    }
+    var divTags = addClickEvent(totalDivs);
 } //End of getRandomMines Function.
 //reset Function
 function reset() {
@@ -101,9 +110,22 @@ function reset() {
         bodyElement.removeChild(bodyElement.firstChild);
     }
 } //End of reset Function.
-//delete the boxes if we want to create boxes again.
-// function deleteContent() {
-//   while (bodyElement.firstChild) {
-//     bodyElement.removeChild(bodyElement.firstChild);
+function addClickEvent(totalDivs) {
+    for (var i = 0; i < totalDivs; i++) {
+        var divs = document.getElementById("divId".concat(i));
+        if (divs !== null) {
+            divs.addEventListener("click", function (event) {
+                console.log("from div tags");
+            });
+        }
+        else {
+            console.log("div value is null");
+            console.log("else condition satisfied");
+        }
+    }
+}
+// for (let i = 0; i < divElements.length; i++) {
+//   for (let j = 0; j < 3; j++) {
+//     console.log(i);
 //   }
-// } //End of deleteContent Function
+// }
