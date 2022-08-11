@@ -6,40 +6,44 @@ var column = document.getElementById("col");
 var formElement = document.getElementById("form");
 var mineInput = document.getElementById("mines");
 //check whether the create function is clicked or not.
+var clicked = 1;
 function create() {
-    var count = 0;
-    var rowValue = parseInt(row === null || row === void 0 ? void 0 : row.value);
-    var colValue = parseInt(column === null || column === void 0 ? void 0 : column.value);
-    //getting mine value from user
-    var mineValue = parseInt(mineInput === null || mineInput === void 0 ? void 0 : mineInput.value);
-    // //store length of the Input fields
-    // let rowLength: number = mineInput.value.length;
-    // let colLength: number = mineInput.value.length;
-    // let mineLength: number = mineInput.value.length;
-    //for loops for creating div elements.
-    for (var i = 1; i <= rowValue; i++) {
-        //create break tag
-        var br = document.createElement("br");
-        for (var j = 1; j <= colValue; j++) {
-            //create a div Element
-            var divElement = document.createElement("div");
-            //adding style to created div element
-            divElement.classList.add("divStyle");
-            //set id to div
-            divElement.setAttribute("id", "divId".concat(count++));
-            //add the created div element to another div(parent div)
-            bodyElement.append(divElement);
-            //add styles to parent div
-            bodyElement.classList.add("appStyle");
-            console.log(divElement);
+    if (clicked === 1) {
+        var count = 0;
+        var rowValue = parseInt(row === null || row === void 0 ? void 0 : row.value);
+        var colValue = parseInt(column === null || column === void 0 ? void 0 : column.value);
+        //getting mine value from user
+        var mineValue = parseInt(mineInput === null || mineInput === void 0 ? void 0 : mineInput.value);
+        // //store length of the Input fields
+        // let rowLength: number = mineInput.value.length;
+        // let colLength: number = mineInput.value.length;
+        // let mineLength: number = mineInput.value.length;
+        //for loops for creating div elements.
+        for (var i = 1; i <= rowValue; i++) {
+            //create break tag
+            var br = document.createElement("br");
+            for (var j = 1; j <= colValue; j++) {
+                //create a div Element
+                var divElement = document.createElement("div");
+                //adding style to created div element
+                divElement.classList.add("divStyle");
+                //set id to div
+                divElement.setAttribute("id", "divId".concat(count++));
+                //add the created div element to another div(parent div)
+                bodyElement.append(divElement);
+                //add styles to parent div
+                bodyElement.classList.add("appStyle");
+                console.log(divElement);
+            }
+            //adding break tag for forming the correct matrix pattern.
+            bodyElement.appendChild(br);
         }
-        //adding break tag for forming the correct matrix pattern.
-        bodyElement.appendChild(br);
-    }
-    var totalDivs = rowValue * colValue;
-    console.log("total Divs " + totalDivs);
-    var getDivCreatedElement = document.querySelectorAll(".divStyle");
-    placeMines(mineValue, totalDivs);
+        var totalDivs = rowValue * colValue;
+        console.log("total Divs " + totalDivs);
+        var getDivCreatedElement = document.querySelectorAll(".divStyle");
+        placeMines(mineValue, totalDivs);
+        clicked++;
+    } //End of if condition
 } //End of Create Function
 //function for placing mines
 function placeMines(mineInputValue, totalDivs) {
@@ -88,6 +92,7 @@ function getRandomMines(mineValue, totalDivs) {
 } //End of getRandomMines Function.
 //reset Function
 function reset() {
+    clicked = 1;
     console.log("reset working");
     formElement.reset();
     bodyElement.classList.remove("appStyle");

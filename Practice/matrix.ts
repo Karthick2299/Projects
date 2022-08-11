@@ -7,8 +7,11 @@ var formElement = <HTMLFormElement>document.getElementById("form");
 var mineInput = <HTMLInputElement>document.getElementById("mines");
 
 //check whether the create function is clicked or not.
+let clicked: number = 1;
+
 
 function create() {
+  if(clicked === 1){
   let count = 0;
   let rowValue: number = parseInt(row?.value);
 
@@ -51,6 +54,9 @@ function create() {
   var getDivCreatedElement = document.querySelectorAll(".divStyle");
 
   placeMines(mineValue, totalDivs);
+  clicked++;
+}//End of if condition
+
 } //End of Create Function
 
 //function for placing mines
@@ -119,6 +125,7 @@ function getRandomMines(mineValue, totalDivs): number[] {
 
 //reset Function
 function reset() {
+  clicked = 1;
   console.log("reset working");
   formElement.reset();
 
