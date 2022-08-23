@@ -82,8 +82,8 @@ button {
   margin: 0 0.2rem;
 }
 .divStyle3{
-  width:1.2rem;
-  height:1.2rem;
+  width:0.5rem;
+  height:0.5rem;
   border: 1px solid black;
   display: inline-block;
   padding: 0.5rem;
@@ -91,7 +91,8 @@ button {
 }
 
 .random{
-    background: black;
+    background: rgb(129, 129, 129);
+    
 }
 
 .game-status{
@@ -102,10 +103,21 @@ button {
   bottom:9%;
   left:50%;
   transform: translate(-50%, -50%);
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   color:rgba(231, 42, 42, 0.926);
+}
+.red{
+  background-color: red;
+}
+.sub-div{
+  width:100%;
+  height:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
 }
 
 @media screen and (max-width: 900px){

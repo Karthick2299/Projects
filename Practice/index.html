@@ -18,25 +18,24 @@
     <section class="custom main-input-section">
       <form id="form">
         <label>Row</label>
-        <input type="number" id="row" required/>
+        <input type="number" id="row" required />
         <label>Column</label>
-        <input type="number" id="col" required/>
+        <input type="number" id="col" required />
         <label>Mines</label>
-        <input type="number" id="mines" minlength="1" maxLength="3" required/>
+        <input type="number" id="mines" minlength="1" maxlength="3" required />
       </form>
 
       <div class="buttons">
         <button class="create" onclick="create();">Create</button>
         <button class="reset" onclick="reset();">Reset</button>
       </div>
-
     </section>
 
     <div class="main-div" id="mainDiv">
       <div id="app"></div>
     </div>
 
-    <div class="game-status">
+    <div class="game-status" id="game-block">
       <div class="sub-div">
         <h2 class="heading">Game over</h2>
       </div>
