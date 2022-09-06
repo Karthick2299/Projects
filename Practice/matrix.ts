@@ -14,7 +14,6 @@ var bombCount = 0;
 interface box {
   identifier: number;
   isBomb: boolean;
-  // isBomb: any;
 }
 //Example Array
 var boxes: box[];
@@ -41,9 +40,7 @@ function create() {
     }
     //for loops for creating div elements.
     for (let i = 0; i < rowValue; i++) {
-      //create break tag
-
-      var br = document.createElement("br");
+   
 
       trTag = document.createElement("tr");
 
@@ -272,26 +269,8 @@ function checking(uniqueValues: any) {
   }
 }
 
-function getNumberOfBombs(
-  xValue: number,
-  yValue: number
-  // isBomb: boolean
-): number[] {
-  var neighbourBoxes: any;
-  // if (
-  //   document.getElementById(`divId${identifier}`)?.classList.contains("random")
-  // ) {
-  neighbourBoxes = getSurroudingBoxes(xValue, yValue);
-  console.log("from neighbour boxes");
-  console.log(neighbourBoxes);
 
-  for (let i = 0; i < neighbourBoxes.length; i++) {
-    console.log(neighbourBoxes[i]);
-  }
-  // }
-  return neighbourBoxes;
-}
-
+//!get surrounding boxes.
 function getSurroudingBoxes(xValue: number, yValue: number): number[] {
   var rowLength = parseInt(row?.value);
   var columnLength = parseInt(column?.value);
@@ -345,18 +324,18 @@ function getSurroudingBoxes(xValue: number, yValue: number): number[] {
   return a;
 }
 
-function checkBomb(neighbourArray) {
-  var divHasMine = document.querySelector(".random");
-  let x, y;
-  var mainArray: any[] = [];
+// function checkBomb(neighbourArray) {
+//   var divHasMine = document.querySelector(".random");
+//   let x, y;
+//   var mainArray: any[] = [];
 
-  for (let i = 0; i < neighbourArray.length; i++) {
-    console.log(neighbourArray[i]);
-    console.log("-------------------------");
-  }
+//   for (let i = 0; i < neighbourArray.length; i++) {
+//     console.log(neighbourArray[i]);
+//     console.log("-------------------------");
+//   }
 
-  console.log("from checkBomb function");
-}
+//   console.log("from checkBomb function");
+// }
 
 function someExFunction(currentIndex: number, tdTags) {
   console.log("current Index Value is : " + currentIndex);

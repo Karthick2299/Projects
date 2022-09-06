@@ -31,8 +31,6 @@ function create() {
         }
         //for loops for creating div elements.
         for (var i = 0; i < rowValue; i++) {
-            //create break tag
-            var br = document.createElement("br");
             trTag = document.createElement("tr");
             for (var j = 0; j < colValue; j++) {
                 //create a td Element
@@ -213,22 +211,7 @@ function checking(uniqueValues) {
         }
     }
 }
-function getNumberOfBombs(xValue, yValue
-// isBomb: boolean
-) {
-    var neighbourBoxes;
-    // if (
-    //   document.getElementById(`divId${identifier}`)?.classList.contains("random")
-    // ) {
-    neighbourBoxes = getSurroudingBoxes(xValue, yValue);
-    console.log("from neighbour boxes");
-    console.log(neighbourBoxes);
-    for (var i = 0; i < neighbourBoxes.length; i++) {
-        console.log(neighbourBoxes[i]);
-    }
-    // }
-    return neighbourBoxes;
-}
+//!get surrounding boxes.
 function getSurroudingBoxes(xValue, yValue) {
     var rowLength = parseInt(row === null || row === void 0 ? void 0 : row.value);
     var columnLength = parseInt(column === null || column === void 0 ? void 0 : column.value);
@@ -272,16 +255,16 @@ function getSurroudingBoxes(xValue, yValue) {
     }
     return a;
 }
-function checkBomb(neighbourArray) {
-    var divHasMine = document.querySelector(".random");
-    var x, y;
-    var mainArray = [];
-    for (var i = 0; i < neighbourArray.length; i++) {
-        console.log(neighbourArray[i]);
-        console.log("-------------------------");
-    }
-    console.log("from checkBomb function");
-}
+// function checkBomb(neighbourArray) {
+//   var divHasMine = document.querySelector(".random");
+//   let x, y;
+//   var mainArray: any[] = [];
+//   for (let i = 0; i < neighbourArray.length; i++) {
+//     console.log(neighbourArray[i]);
+//     console.log("-------------------------");
+//   }
+//   console.log("from checkBomb function");
+// }
 function someExFunction(currentIndex, tdTags) {
     console.log("current Index Value is : " + currentIndex);
     var childDiv = document.querySelectorAll(".divTag");
