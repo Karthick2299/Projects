@@ -6,15 +6,22 @@ var column = document.getElementById("col");
 var formElement = document.getElementById("form");
 var mineInput = document.getElementById("mines");
 var gameStatus = document.getElementById("game-block");
+// for placing mines in random position
+var uniqueValues = [];
+var recursiveIds = [];
+var bombCount = 0;
 //Example Array
 var boxes;
 //check whether the create function is clicked or not.
 var clicked = 1;
-function create(checked) {
-    var isBomb = false;
+console.log("testing..");
+var trTag, tdTag, tableTag, overlayElement;
+function create() {
+    var clickEvent;
     if (clicked === 1) {
         var count = 0;
-        var boxValue = 1;
+        //table tag created
+        tableTag = document.createElement("table");
         var rowValue = parseInt(row === null || row === void 0 ? void 0 : row.value);
         var colValue = parseInt(column === null || column === void 0 ? void 0 : column.value);
         //getting mine value from user
@@ -26,35 +33,26 @@ function create(checked) {
         for (var i = 0; i < rowValue; i++) {
             //create break tag
             var br = document.createElement("br");
+            trTag = document.createElement("tr");
             for (var j = 0; j < colValue; j++) {
-                //create a div Element
-                var divElement = document.createElement("div");
-                // divElement.innerHTML = `${boxValue++}`
-                if (rowValue <= 10 || colValue <= 10) {
-                    //adding style to created div element
-                    divElement.classList.add("divStyle");
-                }
-                else if ((rowValue >= 11 || colValue >= 11) &&
-                    (rowValue <= 14 || colValue <= 14)) {
-                    divElement.classList.add("divStyle2");
-                }
-                else if ((rowValue >= 15 || colValue >= 15) &&
-                    (rowValue <= 22 || colValue <= 22)) {
-                    divElement.classList.add("divStyle3");
-                }
-                else if (rowValue > 22 || colValue > 22) {
-                    console.log("max level reached");
-                }
+                //create a td Element
+                tdTag = document.createElement("td");
+                overlayElement = document.createElement("div");
                 //set id to div
-                divElement.setAttribute("id", "divId".concat(count++));
+                tdTag.setAttribute("id", "divId".concat(count++));
+                tdTag.classList.add("divStyle");
+                trTag.appendChild(tdTag);
+                overlayElement.classList.add("divTag");
+                // overlayElement.append(innerElement);
+                trTag.classList.add("positioning");
+                tdTag.appendChild(overlayElement);
+                // trTag.append(overlayElement);
+                tableTag.append(trTag);
                 //add the created div element to another div(parent div)
-                bodyElement.append(divElement);
+                bodyElement.append(tableTag);
                 //add styles to parent div
                 bodyElement.classList.add("appStyle");
-                console.log(divElement);
             }
-            //adding break tag for forming the correct matrix pattern.
-            bodyElement.appendChild(br);
         }
         var totalDivs = rowValue * colValue;
         console.log("total Divs " + totalDivs);
@@ -64,53 +62,47 @@ function create(checked) {
 } //End of Create Function
 //function for placing mines
 function placeMines(mineInputValue, totalDivs) {
-    // console.log("Given Mine values " + mineInputValue);
-    var anotherDiv = document.querySelectorAll(".divStyle");
-    var mineArray = [];
-    //adding mine input values into array using for loop
-    for (var i = 1; i <= mineInputValue; i++) {
-        mineArray.push(i);
+    //alignment changes in div tag
+    for (var i = 0; i < totalDivs; i++) {
+        var divs = document.getElementById("divId".concat(i));
+        divs.style.cursor = "pointer";
     }
     var rowValues = parseInt(row === null || row === void 0 ? void 0 : row.value);
     var colValues = parseInt(column === null || column === void 0 ? void 0 : column.value);
     //place the random number in Divs
     var randomValue = getRandomMines(mineInputValue, totalDivs, rowValues, colValues);
-    // console.log("mine input value " + mineInputValue);
 } //End of placeMines function
 //get Random number for mines
 //this function for getting non-repeating random Numbers.
 function getRandomMines(mineValue, totalDivs, row, column) {
-    var _a, _b;
-    var ranNum = 4;
-    console.log(mineValue);
+    var _a;
+    //for checking the game status
+    var checkGameStatus = false;
     if (mineValue.length == 0) {
         console.log("No More Random Numbers");
     }
-    // var div = document.getElementById("divId4")?.classList.add("random");
-    // for placing mines in random position
-    var uniqueValues = [];
     if (row >= 1 && column >= 1) {
         while (uniqueValues.length < mineValue) {
-            // var randomNumbers = Math.floor(Math.random() * totalDivs);
-            var randomNumbers = 1;
-            console.log(randomNumbers);
+            var randomNumbers = Math.floor(Math.random() * totalDivs);
             if (!uniqueValues.includes(randomNumbers)) {
                 uniqueValues.push(randomNumbers);
             }
         }
         for (var i = 0; i < uniqueValues.length; i++) {
-            console.log("unique values length : " + uniqueValues.length);
             var id = uniqueValues[i];
             console.log(document.getElementById("divId".concat(id)));
-            var divs = (_a = document
-                .getElementById("divId".concat(id))) === null || _a === void 0 ? void 0 : _a.classList.add("random");
-            var Divs = (_b = document
-                .getElementById("divId".concat(id))) === null || _b === void 0 ? void 0 : _b.addEventListener("click", function (event) {
+            //bomb code => &#128163
+            //heart code => \u200D\u2764\uFE0F\u200D
+            document.getElementById("divId".concat(id)).appendChild(document.createTextNode("💣"));
+            var Divs = (_a = document
+                .getElementById("divId".concat(id))) === null || _a === void 0 ? void 0 : _a.addEventListener("click", function (event) {
                 console.log("Mine clicked");
                 gameStatus.style.display = "block";
+                // setTimeout(() => {
+                //   mainDivTag.style.display = "none";
+                // }, 1000)
             });
         }
-        // document.getElementById(`divId${4}`)?.classList.add("random");
     }
     else if (row === 0 || column === 0) {
         console.log("Cannot create table with zero values");
@@ -119,17 +111,12 @@ function getRandomMines(mineValue, totalDivs, row, column) {
     else {
         console.log("row and column fields must be filled!!!");
     }
-    var totalDivTags = totalDivs;
-    console.log("unique values");
-    console.log(uniqueValues);
     var divTags = addClickEvent(totalDivs, uniqueValues);
     var checkResult = checking(uniqueValues);
-    // var matrixFunction = getMatrix(totalDivs);
 } //End of getRandomMines Function.
 //reset Function
 function reset() {
     clicked = 1;
-    console.log("reset working");
     formElement.reset();
     bodyElement.classList.remove("appStyle");
     //deleting div elements in HTML using while loop
@@ -137,61 +124,110 @@ function reset() {
         bodyElement.removeChild(bodyElement.firstChild);
     }
     gameStatus.style.display = "none";
+    location.reload();
 } //End of reset Function.
 function addClickEvent(totalDivs, uniqueValues) {
     var unique = uniqueValues;
-    for (var i = 0; i < totalDivs; i++) {
+    var trTags = document.querySelectorAll(".divTag");
+    var tdTags = document.querySelectorAll(".divStyle");
+    var _loop_1 = function (i) {
+        var divChild = document.querySelectorAll(".divTag");
         var divs = document.getElementById("divId".concat(i));
         if (divs !== null) {
-            divs.addEventListener("click", function (event) {
-                console.log("clicked function");
+            //  someExFunction();
+            var iconPlaced_1 = true;
+            divs.addEventListener("click", function (clickEvent) {
+                someExFunction(i, tdTags);
+                console.log("## Event", clickEvent, i);
+                if (!iconPlaced_1) {
+                    return;
+                }
+                if (tdTags[i].classList.contains("divStyle")) {
+                    tdTags[i].classList.add("divStyleText");
+                }
+                divChild[i].classList.add("hide");
+                console.log(iconPlaced_1);
+                // uniqueValues
+            });
+            divs.addEventListener("contextmenu", function (event) {
+                event.preventDefault();
+                if (iconPlaced_1) {
+                    var barIcon = document.createTextNode("\ud83d\udeab");
+                    divChild[i].appendChild(barIcon);
+                    iconPlaced_1 = !iconPlaced_1;
+                }
+                else {
+                    divChild[i].innerHTML = "";
+                    iconPlaced_1 = !iconPlaced_1;
+                }
             });
         }
-        else {
-            console.log("div value is null");
-            console.log("else condition satisfied");
-        }
+    };
+    // console.log("trTags");
+    // console.log(trTags);
+    for (var i = 0; i < totalDivs; i++) {
+        _loop_1(i);
     }
 }
-//checking function
+//*checking function
+var someEx = [];
 function checking(uniqueValues) {
-    var someEx = [];
-    var someVar;
-    console.log("checking Function");
-    // for (let i = 0; i < uniqueValues.length; i++) {
-    //   console.log(uniqueValues[i]);
-    // }
-    var counting = 4;
+    var someVar = [];
+    var bombCount = 0;
     var MainRow = parseInt(row === null || row === void 0 ? void 0 : row.value);
     var MainCol = parseInt(column === null || column === void 0 ? void 0 : column.value);
     var count = -1;
     for (var i = 0; i < MainRow; i++) {
+        someEx[i] = [];
         for (var j = 0; j < MainCol; j++) {
-            someEx.push({
-                xValue: i,
-                yValue: j,
-                identifier: ++count
-            });
-            console.log(count);
+            someEx[i][j] = {
+                identifier: ++count,
+                isBomb: uniqueValues.includes(count)
+            };
         }
     }
-    for (var i = 0; i < someEx.length; i++) {
-        // someVar = getNumberOfBombs(
-        getNumberOfBombs(someEx[i].xValue, someEx[i].yValue, 
-        // someEx[i].isBomb,
-        someEx[i].identifier);
-        console.log(someEx[i]);
+    console.log("someEx array");
+    console.log(someEx);
+    for (var i = 0; i < MainRow; i++) {
+        for (var j = 0; j < MainCol; j++) {
+            if (!someEx[i][j].isBomb) {
+                var localVar = getSurroudingBoxes(i, j);
+                // console.log(localVar)
+                bombCount = 0;
+                for (var _i = 0, localVar_1 = localVar; _i < localVar_1.length; _i++) {
+                    var item = localVar_1[_i];
+                    var data = someEx[item[0]][item[1]];
+                    if (data.isBomb) {
+                        bombCount++;
+                    }
+                }
+                if (bombCount > 0) {
+                    var text = document.createTextNode(bombCount.toString());
+                    var element = document.getElementById("divId".concat(someEx[i][j].identifier));
+                    if (element) {
+                        element.appendChild(text);
+                        element.classList.add("bcounts");
+                    }
+                }
+            }
+        }
     }
 }
-function getNumberOfBombs(xValue, yValue, 
-// isBomb: boolean,
-identifier) {
-    var _a;
-    console.log("for loop is working");
-    if ((_a = document.getElementById("divId".concat(identifier))) === null || _a === void 0 ? void 0 : _a.classList.contains("random")) {
+function getNumberOfBombs(xValue, yValue
+// isBomb: boolean
+) {
+    var neighbourBoxes;
+    // if (
+    //   document.getElementById(`divId${identifier}`)?.classList.contains("random")
+    // ) {
+    neighbourBoxes = getSurroudingBoxes(xValue, yValue);
+    console.log("from neighbour boxes");
+    console.log(neighbourBoxes);
+    for (var i = 0; i < neighbourBoxes.length; i++) {
+        console.log(neighbourBoxes[i]);
     }
-    var neighbourBoxes = getSurroudingBoxes(xValue, yValue);
-    var Result = arrayLooping(neighbourBoxes);
+    // }
+    return neighbourBoxes;
 }
 function getSurroudingBoxes(xValue, yValue) {
     var rowLength = parseInt(row === null || row === void 0 ? void 0 : row.value);
@@ -199,7 +235,6 @@ function getSurroudingBoxes(xValue, yValue) {
     //conditions for getting neighbouring nodes of Mine.
     var totalValues = rowLength * columnLength;
     var a = [];
-    console.log("This if condition is working");
     //top left
     if (xValue - 1 >= 0 && yValue - 1 >= 0) {
         a.push([xValue - 1, yValue - 1]);
@@ -209,7 +244,10 @@ function getSurroudingBoxes(xValue, yValue) {
         a.push([xValue - 1, yValue]);
     }
     //top right
-    if (xValue - 1 >= 0 && yValue + 1 < rowLength) {
+    // if (xValue - 1 >= 0 && yValue + 1 < rowLength) {
+    //   a.push([xValue - 1, yValue + 1]);
+    // }
+    if (xValue - 1 >= 0 && xValue < columnLength && yValue + 1 < rowLength) {
         a.push([xValue - 1, yValue + 1]);
     }
     //left
@@ -225,7 +263,7 @@ function getSurroudingBoxes(xValue, yValue) {
         a.push([xValue + 1, yValue - 1]);
     }
     //bottom
-    if (xValue + 1 <= columnLength) {
+    if (xValue + 1 < columnLength) {
         a.push([xValue + 1, yValue]);
     }
     //bottom right
@@ -234,6 +272,75 @@ function getSurroudingBoxes(xValue, yValue) {
     }
     return a;
 }
-function arrayLooping(array) {
-    console.log("from arrayLooping function");
+function checkBomb(neighbourArray) {
+    var divHasMine = document.querySelector(".random");
+    var x, y;
+    var mainArray = [];
+    for (var i = 0; i < neighbourArray.length; i++) {
+        console.log(neighbourArray[i]);
+        console.log("-------------------------");
+    }
+    console.log("from checkBomb function");
+}
+function someExFunction(currentIndex, tdTags) {
+    console.log("current Index Value is : " + currentIndex);
+    var childDiv = document.querySelectorAll(".divTag");
+    var rowValue = parseInt(row === null || row === void 0 ? void 0 : row.value);
+    var columnValue = parseInt(column === null || column === void 0 ? void 0 : column.value);
+    console.log("from someExFunction");
+    var resultArray = [];
+    // let currentIndex = ;
+    var index = 0;
+    for (var i = 0; i < rowValue; i++) {
+        // resultArray[i] = [];
+        for (var j = 0; j < columnValue; j++) {
+            // resultArray[i][j] = getSurroudingBoxes(i, j);
+            if (currentIndex === index) {
+                demoFunction(tdTags);
+            }
+            index++;
+            // emptyArray.push(resultArray[i][j]);
+            // console.log(resultArray);
+        }
+    }
+}
+function LoopingFunction(surroundBoxes, tdTags) {
+    console.log("td tags in Loop function");
+    console.log("Looping function called");
+    for (var i = 0; i < surroundBoxes.length; i++) {
+        if (!uniqueValues.includes(surroundBoxes[i])) {
+            var _a = surroundBoxes[i], x = _a[0], y = _a[1];
+            var id = someEx[x][y].identifier;
+            console.log("id is : " + id);
+            var elem = document.getElementById("divId".concat(id));
+            if (elem && elem.classList.contains("bcounts")) {
+                var selector = "#divId" + id + " .divTag";
+                var anotherSelector = "#divId" + id;
+                document.querySelector(selector).classList.add("hide");
+                document.querySelector(anotherSelector).classList.add("divStyleText");
+                recursiveIds.push(selector);
+            }
+            else {
+                var elseSelector = "#divId" + id + " .divTag";
+                var elseId = id;
+                if (!uniqueValues.includes(elseId)) {
+                    if (!recursiveIds.includes(elseSelector)) {
+                        document.querySelector(elseSelector).classList.add("hide");
+                        recursiveIds.push(elseSelector);
+                    }
+                }
+            }
+        }
+    }
+}
+function demoFunction(tdTags) {
+    var newRowValue = parseInt(row === null || row === void 0 ? void 0 : row.value);
+    var newColValue = parseInt(column === null || column === void 0 ? void 0 : column.value);
+    //nested for loop
+    for (var i = 0; i < newRowValue; i++) {
+        for (var j = 0; j < newColValue; j++) {
+            var surroundingBoxes = getSurroudingBoxes(i, j);
+            LoopingFunction(surroundingBoxes, tdTags);
+        }
+    }
 }

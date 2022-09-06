@@ -60,93 +60,124 @@ button {
 .appStyle {
   border: 3px solid steelblue;
   padding: 1rem;
-  max-width:46.25rem;
+  max-width: 46.25rem;
   max-height: 43.75rem;
+  position: relative;
+ 
 }
 
 .divStyle {
-  width: 3rem;
-  height: 3rem;
-  border: 1px solid black;
+  width: 2rem;
+  height: 2rem;
+  /* border:1px solid red; */
   display: inline-block;
-  padding: 0.5rem;
-  margin: 0 0.2rem;
+  padding: 0.2rem;
+  margin: 0.2rem;
+  text-align: center;
+  background-color: rgb(182, 182, 182);
+  font-weight: 800;
+  opacity: 1;
+  color: transparent;
 }
 
-.divStyle2{
-  width:2rem;
-  height:2rem;
-  border: 1px solid black;
+.divStyleText {
+  width: 2rem;
+  height: 2rem;
   display: inline-block;
-  padding: 0.5rem;
-  margin: 0 0.2rem;
-}
-.divStyle3{
-  width:0.5rem;
-  height:0.5rem;
-  border: 1px solid black;
-  display: inline-block;
-  padding: 0.5rem;
-  margin: 0 0.2rem;
+  padding: 0.2rem;
+  margin: 0.2rem;
+  text-align: center;
+  background-color: rgb(182, 182, 182);
+  font-weight: 800;
+  opacity: 1;
+  color: purple;
 }
 
-.random{
-    background: rgb(129, 129, 129);
-    
+.divTag {
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  display: inline-block;
+  background: rgb(89, 35, 112);
+  transform: translate(-3px, -3px);
+  z-index: -100;
+  background: #000;
+  color: red;
+}
+/* .disablePointer{
+  pointer-events: none !important;
 }
 
-.game-status{
-  width:20rem;
-  height:5rem;
-  border:1px solid black;
+.enablePointer{
+  pointer-events: auto !important;
+} */
+.positioning {
+  position: relative;
+}
+.hide {
+  display: none ;
+  text-align: center;
+}
+
+.game-status {
+  width: 20rem;
+  height: 5rem;
+  border: 1px solid black;
   position: absolute;
-  bottom:9%;
-  left:50%;
+  bottom: 9%;
+  left: 50%;
   transform: translate(-50%, -50%);
   display: none;
   justify-content: center;
   align-items: center;
-  color:rgba(231, 42, 42, 0.926);
+  color: rgba(231, 42, 42, 0.926);
 }
-.red{
+.red {
   background-color: red;
 }
-.sub-div{
-  width:100%;
-  height:100%;
+.sub-div {
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   vertical-align: middle;
 }
 
-@media screen and (max-width: 900px){
-
-  .custom{
-    width:100%;
-    margin: 0;
-  }
-  #form{
-    flex-direction: row;
-  }
-  .buttons{
-    height:3.6rem;
-  }
-
+.text-green {
+  color: green;
+}
+.text-blue {
+  color: steelblue;
 }
 
-@media screen and (max-width: 800px){
-  .custom{
-    height:15%;
+.text-violet {
+  color: purple !important;
+}
+
+/* * media queries */
+
+@media screen and (max-width: 900px) {
+  .custom {
+    width: 100%;
+    margin: 0;
+  }
+  #form {
+    flex-direction: row;
+  }
+  .buttons {
+    height: 3.6rem;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .custom {
+    height: 15%;
     justify-content: space-evenly;
     flex-direction: column;
   }
-  .buttons{
+  .buttons {
     margin: 0.5rem auto;
-    padding:0.5rem;
+    padding: 0.5rem;
   }
-
-
 }
-
-
