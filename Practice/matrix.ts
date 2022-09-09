@@ -40,8 +40,6 @@ function create() {
     }
     //for loops for creating div elements.
     for (let i = 0; i < rowValue; i++) {
-   
-
       trTag = document.createElement("tr");
 
       for (let j = 0; j < colValue; j++) {
@@ -123,6 +121,12 @@ function getRandomMines(
     for (let i = 0; i < uniqueValues.length; i++) {
       const id = uniqueValues[i];
       console.log(document.getElementById(`divId${id}`));
+
+      var divParent = "#divId" + id;
+      var bombSelector = "#divId" + id + " .divTag";
+      document.querySelector(bombSelector).classList.add("bomb");
+      document.querySelector(divParent).classList.add("demo");
+
       //bomb code => &#128163
       //heart code => \u200D\u2764\uFE0F\u200D
       (<HTMLElement>document.getElementById(`divId${id}`)).appendChild(
@@ -134,9 +138,9 @@ function getRandomMines(
         ?.addEventListener("click", function (event) {
           console.log("Mine clicked");
           gameStatus.style.display = "block";
-          // setTimeout(() => {
-          //   mainDivTag.style.display = "none";
-          // }, 1000)
+          setTimeout(() => {
+            // bombSelector.classList.add("hide");
+          }, 1000);
         });
     }
   } else if (row === 0 || column === 0) {
@@ -216,10 +220,9 @@ function addClickEvent(totalDivs, uniqueValues) {
   }
 }
 
-//*checking function
-
 var someEx: any[] = [];
 
+//*checking function
 function checking(uniqueValues: any) {
   let someVar: any[] = [];
 
@@ -268,7 +271,6 @@ function checking(uniqueValues: any) {
     }
   }
 }
-
 
 //!get surrounding boxes.
 function getSurroudingBoxes(xValue: number, yValue: number): number[] {
@@ -324,26 +326,20 @@ function getSurroudingBoxes(xValue: number, yValue: number): number[] {
   return a;
 }
 
-// function checkBomb(neighbourArray) {
-//   var divHasMine = document.querySelector(".random");
-//   let x, y;
-//   var mainArray: any[] = [];
-
-//   for (let i = 0; i < neighbourArray.length; i++) {
-//     console.log(neighbourArray[i]);
-//     console.log("-------------------------");
-//   }
-
-//   console.log("from checkBomb function");
-// }
-
 function someExFunction(currentIndex: number, tdTags) {
   console.log("current Index Value is : " + currentIndex);
+  let Example: any[] = [];
+
+  console.log("array value : ");
+  console.log(Example);
 
   var childDiv = document.querySelectorAll(".divTag");
+  let bombEl = document.querySelectorAll(".bomb");
 
   let rowValue = parseInt(row?.value);
   let columnValue = parseInt(column?.value);
+
+  let totalDivs = rowValue * columnValue;
 
   console.log("from someExFunction");
 
@@ -351,12 +347,34 @@ function someExFunction(currentIndex: number, tdTags) {
   // let currentIndex = ;
   let index = 0;
   for (let i = 0; i < rowValue; i++) {
-    // resultArray[i] = [];
+    resultArray[i] = [];
     for (let j = 0; j < columnValue; j++) {
       // resultArray[i][j] = getSurroudingBoxes(i, j);
 
       if (currentIndex === index) {
-        demoFunction(tdTags);
+        let array: any[] = [];
+        var bCounts = document.querySelectorAll(".bcounts");
+        let countElement = document.getElementById(`divId${currentIndex}`);
+        let el = "#divId" + currentIndex + " .divTag";
+        console.log(countElement);
+
+        if (uniqueValues.includes(currentIndex)) {
+          for (let i = 0; i < tdTags.length; i++) {
+            if (tdTags[i].classList.contains("demo")) {
+              tdTags[i].classList.add("divStyleText");
+              if (childDiv[i].classList.contains("bomb")) {
+                childDiv[i].classList.add("hide");
+              }
+            }
+          }
+        }
+
+        if (
+          !countElement.classList.contains("bcounts") &&
+          !uniqueValues.includes(currentIndex)
+        ) {
+          demoFunction(currentIndex);
+        }
       }
       index++;
       // emptyArray.push(resultArray[i][j]);
@@ -365,53 +383,118 @@ function someExFunction(currentIndex: number, tdTags) {
   }
 }
 
-function LoopingFunction(surroundBoxes: number[], tdTags) {
-  console.log("td tags in Loop function");
+function LoopingFunction(surroundBoxes: number[]) {
+  // console.log("td tags in Loop function");
+  let selector;
 
-  console.log("Looping function called");
+  console.log("surrounding boxes");
+  console.log(surroundBoxes.length);
+
+  // console.log("Looping function called");
   for (let i = 0; i < surroundBoxes.length; i++) {
+    // if (uniqueValues.includes(surroundBoxes[i])) {
+    //   const [x, y] = surroundBoxes[i] as any;
+    //   const id = someEx[x][y].identifier;
+    //   const idValue = someEx[x][y];
+
+    //   var bombs = document.querySelectorAll("bomb");
+
+    //   for (let i = 0; i < bombs.length; i++) {
+    //     bombs[i].classList.add("hide");
+    //   }
+    // }
+
     if (!uniqueValues.includes(surroundBoxes[i])) {
       const [x, y] = surroundBoxes[i] as any;
       const id = someEx[x][y].identifier;
+      const idValue = someEx[x][y];
+      // console.log("idValue is : ");
+      // console.log(idValue);
 
-      console.log("id is : " + id);
+      // console.log("id is : " + id);
 
       const elem = document.getElementById(`divId${id}`);
 
       if (elem && elem.classList.contains("bcounts")) {
-        const selector = "#divId" + id + " .divTag";
+        selector = "#divId" + id + " .divTag";
         const anotherSelector = "#divId" + id;
 
         document.querySelector(selector).classList.add("hide");
         document.querySelector(anotherSelector).classList.add("divStyleText");
 
-        recursiveIds.push(selector);
+        let mineValue = parseInt(mineInput?.value);
+        if (mineValue === 1) {
+          recursiveIds.push(selector);
+          // return;
+        }
+        // return;
+
+        console.log("recursive Array");
+        console.log(recursiveIds);
+        // return;
       } else {
+        const bCounts = document.querySelectorAll(".bcounts");
+        console.log("bcOunts values");
+        console.log(bCounts);
+
         const elseSelector = "#divId" + id + " .divTag";
         const elseId = id;
+        console.log("from else Selector");
+        console.log(id);
 
         if (!uniqueValues.includes(elseId)) {
           if (!recursiveIds.includes(elseSelector)) {
             document.querySelector(elseSelector).classList.add("hide");
+
+            // return;
             recursiveIds.push(elseSelector);
+            return;
+            // if(!recursiveIds.includes(selector)){
+
+            // }
+            // return;
           }
         }
       }
+    } else {
+      const [x, y] = surroundBoxes[i] as any;
+      const id = someEx[x][y].identifier;
+      const elseSelectorDiv = "#divId" + id + " .divTag";
+
+      const mineValue = parseInt(mineInput?.value);
+      if (mineValue > 1) {
+        document.querySelector(elseSelectorDiv).classList.add("hide");
+        recursiveIds.push(elseSelectorDiv);
+      }
     }
   }
+
+  console.log("recursive Array : ");
+  console.log(recursiveIds);
 }
 
-function demoFunction(tdTags) {
+function demoFunction(currentIndex) {
+  var indexArray: any[] = [];
+
+  // console.log("demo Function called");
   const newRowValue = parseInt(row?.value);
   const newColValue = parseInt(column?.value);
 
+  // indexArray.push(currentIndex);
+  // console.log(indexArray);
   //nested for loop
+  // console.log("current index for loop called");
+
+  const array: any[] = [];
 
   for (let i = 0; i < newRowValue; i++) {
     for (let j = 0; j < newColValue; j++) {
       const surroundingBoxes = getSurroudingBoxes(i, j);
-
-      LoopingFunction(surroundingBoxes, tdTags);
+      console.log("surrounding boxes values");
+      // console.log(surroundingBoxes);
+      // array.push(surroundingBoxes);
+      LoopingFunction(surroundingBoxes);
     }
   }
+
 }

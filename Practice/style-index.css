@@ -115,7 +115,7 @@ button {
   position: relative;
 }
 .hide {
-  display: none ;
+  display: none !important ;
   text-align: center;
 }
 
